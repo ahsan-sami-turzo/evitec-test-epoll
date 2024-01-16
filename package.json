@@ -4,7 +4,8 @@
   "description": "Simple poll server",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "nodemon": "nodemon server.js"
   },
   "keywords": [
     "poll",
@@ -16,6 +17,12 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "cors": "^2.8.4",
-    "express": "^4.14.0"
+    "dotenv": "^16.3.1",
+    "express": "^4.14.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }
