@@ -7,6 +7,7 @@ let db;
 
 async function connectToDatabase() {
     const MONGODB_URI = process.env.MONGODB_URI;
+    const DATABASE_NAME = process.env.DATABASE_NAME;
 
     const client = new MongoClient(MONGODB_URI, {
         serverApi: {
@@ -18,7 +19,7 @@ async function connectToDatabase() {
 
     try {
         await client.connect();
-        db = client.db("epoll"); 
+        db = client.db(DATABASE_NAME); 
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
