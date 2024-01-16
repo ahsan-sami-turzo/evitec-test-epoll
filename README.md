@@ -111,10 +111,11 @@ These instructions will guide you on setting up and running the ePoll applicatio
     curl -X POST -H "Content-Type: application/json" -d '{"title": "New Poll", "options": ["Option 1", "Option 2"]}' http://localhost:8081/api/polls/add
     ```
 
-## Contributing
+## FRONTEND
+The front-end of this application is inside the folder
+```bash
+epoll-web
+```
 
-Feel free to contribute to the development of this application. Create an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## Author
+Turzo Ahsan Sami
