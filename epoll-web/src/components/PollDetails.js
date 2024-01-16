@@ -1,0 +1,23 @@
+// src/components/PollDetails.js
+import React from 'react';
+
+const PollDetails = ({ selectedPoll, onVote }) => (
+    <div className="mt-4">
+        <h2>{selectedPoll.title}</h2>
+        <ul className="list-group">
+            {selectedPoll.options.map(option => (
+                <li key={option.id} className="list-group-item">
+                    {option.title} - Votes: {option.votes}
+                    <button
+                        className="btn btn-sm btn-outline-primary ms-2"
+                        onClick={() => onVote(selectedPoll.id, option.id)}
+                    >
+                        Vote
+                    </button>
+                </li>
+            ))}
+        </ul>
+    </div>
+);
+
+export default PollDetails;
