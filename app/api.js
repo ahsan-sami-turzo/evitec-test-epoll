@@ -5,6 +5,7 @@ const pollsController = require('./controller/PollsController');
 
 const router = express.Router();
 
+// Get Poll List
 router.get('/polls', async (req, res) => {
   try {
     const polls = await pollsController.getPolls();
@@ -14,6 +15,8 @@ router.get('/polls', async (req, res) => {
   }
 });
 
+
+// Get a Poll options by ID
 router.get('/polls/:id', async (req, res) => {
   const pollId = parseInt(req.params.id);
 
@@ -30,6 +33,24 @@ router.get('/polls/:id', async (req, res) => {
   }
 });
 
+// Delete a Poll by ID
+router.delete('/delete/poll/:id', async (req, res) => {
+  const pollId = parseInt(req.params.id);
+
+  try {
+    const deletedPoll = await pollsController.deletePollById(pollId);
+
+    if (!deletedPoll) {
+      return res.status(404).json({ error: 'Poll not found' });
+    }
+
+    res.json({ message: 'Poll deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Vote in a Poll
 router.post('/polls/:id/vote/:option', async (req, res) => {
   const pollId = parseInt(req.params.id);
   const optionId = parseInt(req.params.option);
@@ -42,6 +63,7 @@ router.post('/polls/:id/vote/:option', async (req, res) => {
   }
 });
 
+// Add a new Poll
 router.post('/polls/add', async (req, res) => {
   const polls = await pollsController.getPolls();
 

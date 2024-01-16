@@ -1,9 +1,10 @@
 // pollsController.js
 
-const { initializeDB, connectToDatabase, getDatabase } = require('../db'); 
+const { initializeDB, connectToDatabase, getDatabase } = require('../db');
 
-connectToDatabase()
+// connectToDatabase()
 
+// get list of polls
 async function getPolls() {
     try {
         const db = getDatabase()
@@ -14,6 +15,7 @@ async function getPolls() {
     }
 }
 
+// get a poll options by ID
 async function getPollById(pollId) {
     try {
         const db = getDatabase()
@@ -24,6 +26,7 @@ async function getPollById(pollId) {
     }
 }
 
+// vote for a poll option
 async function voteForOption(pollId, optionId) {
     try {
         const db = getDatabase()
@@ -53,6 +56,31 @@ async function voteForOption(pollId, optionId) {
     }
 }
 
+// delete a poll by ID
+async function deletePollById(pollId) {
+    try {
+        const db = getDatabase();
+        const pollsCollection = db.collection('polls');
+
+        // Find the poll to be deleted
+        const pollToDelete = await pollsCollection.findOne({ id: pollId });
+
+        if (!pollToDelete) {
+            throw new Error('Poll not found');
+        }
+
+        // Delete the poll by ID
+        await pollsCollection.deleteOne({ id: pollId });
+
+        return pollToDelete;
+    } catch (error) {
+        console.error('Error deleting poll:', error);
+        throw new Error('Internal Server Error');
+    }
+}
+
+
+// create a new poll
 async function createPoll(newPoll) {
     try {
         const db = getDatabase()
@@ -73,4 +101,5 @@ module.exports = {
     getPollById,
     voteForOption,
     createPoll,
+    deletePollById
 };

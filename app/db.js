@@ -28,7 +28,7 @@ async function connectToDatabase() {
 }
 
 // Ensure connection is established when this module is imported
-connectToDatabase();
+// connectToDatabase();
 
 function getDatabase() {
     if (!db) {
