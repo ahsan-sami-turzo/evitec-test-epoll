@@ -135,3 +135,6 @@ dist
 .docx
 .ppt
 .pptx
+
+
+package-lock.json
