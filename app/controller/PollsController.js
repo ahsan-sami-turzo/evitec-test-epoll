@@ -56,12 +56,11 @@ async function voteForOption(pollId, optionId) {
 async function createPoll(newPoll) {
     try {
         const db = getDatabase()
-        
         // Insert the new poll into the 'polls' collection
         const result = await db.collection('polls').insertOne(newPoll);
 
         // Return the newly created poll
-        return result.ops[0];
+        return result;
     } catch (error) {
         console.error('Error creating poll:', error);
         throw new Error('Internal Server Error');

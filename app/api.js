@@ -43,15 +43,29 @@ router.post('/polls/:id/vote/:option', async (req, res) => {
 });
 
 router.post('/polls/add', async (req, res) => {
+  const polls = await pollsController.getPolls();
+
+  const { title, options } = req.body;
+
+  // Validate that options is an array before accessing its elements
+  if (!Array.isArray(options)) {
+    return res.status(400).json({ error: 'Options must be an array' });
+  }
+
+  // Initialize votes count to 0 for each option
+  const pollOptions = options.map((option, index) => ({
+    id: index + 1,
+    title: option,
+    votes: 0,
+  }));
+
+  // Create a new poll document
   const newPoll = {
-    id: polls.length + 1, // Assuming polls array is the in-memory storage (remove this line when not using in-memory storage)
-    title: req.body.title,
-    options: req.body.options.map((title, index) => ({
-      id: index + 1,
-      title,
-      votes: 0
-    }))
+    id: polls.length + 1,  // Assuming polls is an array containing existing polls
+    title: title,
+    options: pollOptions,
   };
+
 
   try {
     const createdPoll = await pollsController.createPoll(newPoll);
