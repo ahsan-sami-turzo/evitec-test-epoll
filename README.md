@@ -121,6 +121,5 @@ epoll-web
 Turzo Ahsan Sami
 
 
-[<img src="https://img.youtube.com/vi/D_PyMYWuLbk/hqdefault.jpg" />](https://www.youtube.com/embed/)
+[![Alt Text](https://img.youtube.com/vi/D_PyMYWuLbk/0.jpg)](https://www.youtube.com/watch?v=D_PyMYWuLbk)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/D_PyMYWuLbk?si=sDiFXDdPwQ2pLKcv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
