@@ -11,15 +11,16 @@ async function connectToDatabase() {
 
     const client = new MongoClient(MONGODB_URI, {
         serverApi: {
-          version: ServerApiVersion.v1,
-          strict: true,
-          deprecationErrors: true,
+            poolSize: 100,
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
         }
-      });
+    });
 
     try {
         await client.connect();
-        db = client.db("epoll"); 
+        db = client.db("epoll");
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
